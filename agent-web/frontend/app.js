@@ -1,6 +1,6 @@
 // ── Config ──
 // Change cette URL par celle de ton backend Render après déploiement
-const BACKEND_URL = "https://TON-BACKEND.onrender.com";
+const BACKEND_URL = "https://agent-ai-1r9d.onrender.com";
 
 // ── État ──
 const sessionId = crypto.randomUUID();
