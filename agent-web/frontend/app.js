@@ -290,7 +290,7 @@ function appendMessage(role, text) {
   div.className = `message ${role}`;
   const avatar = document.createElement("div");
   avatar.className = "avatar";
-  avatar.textContent = role === "user" ? "T" : "⬡";
+  avatar.innerHTML = '<img src="Indra.png" style="width:100%;height:100%;object-fit:contain;border-radius:4px;" />';
   const bubble = document.createElement("div");
   bubble.className = "bubble";
   bubble.innerHTML = marked.parse(text);
