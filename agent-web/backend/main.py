@@ -107,13 +107,12 @@ def get_messages(conv_id: str):
 
 @app.post("/chat")
 def chat(req: ChatRequest):
+    import traceback
     if not os.getenv("GROQ_API_KEY"):
         raise HTTPException(status_code=500, detail="GROQ_API_KEY manquante")
 
-    # Crée ou récupère l'agent en session
     if req.conversation_id not in sessions:
         sessions[req.conversation_id] = Agent()
-        # Recharge l'historique depuis Supabase
         messages = db.get_messages(req.conversation_id)
         for m in messages:
             if m["role"] in ("user", "assistant"):
@@ -123,18 +122,16 @@ def chat(req: ChatRequest):
                 })
 
     agent = sessions[req.conversation_id]
-
-    # Sauvegarde le message utilisateur
     db.save_message(req.conversation_id, "user", req.message)
 
     try:
         response = agent.chat(req.message)
     except Exception as e:
+        detail = traceback.format_exc()
+        print(f"ERREUR CHAT: {detail}")
         raise HTTPException(status_code=500, detail=str(e))
 
-    # Sauvegarde la réponse
     db.save_message(req.conversation_id, "assistant", response)
-
     return {"response": response}
 
 
