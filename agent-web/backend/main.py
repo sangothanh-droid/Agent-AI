@@ -30,7 +30,7 @@ app.add_middleware(
 
 # ── Keep-alive (anti-sleep Render) ──
 def _keep_alive():
-    url = os.getenv("RENDER_URL", "https://srv-d8ju0ceq1p3s73a54h0g")
+    url = os.getenv("RENDER_URL", "https://agent-ai-1r9d.onrender.com")
     interval = 600  # 10 minutes
     time.sleep(30)  # attend que le serveur soit bien démarré
     while True:
