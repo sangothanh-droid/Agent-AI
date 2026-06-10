@@ -202,3 +202,9 @@ textarea::placeholder { color: var(--text-muted); }
   .input-bar { padding: 12px 16px 20px; }
   .bubble { max-width: 90%; }
 }
+
+.logo-img {
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
+}
